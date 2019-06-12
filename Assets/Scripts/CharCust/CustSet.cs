@@ -37,6 +37,10 @@ public class CustSet : MonoBehaviour
     public Text classText;
     public string[] selectedClass = new string[8];
     public string[] selectedRace = new string[11];
+    public Text pointText;
+    public Button[] positivePoints;
+    public Button[] negativePoints;
+
     #endregion
     #region Start
     void Start()
@@ -94,6 +98,7 @@ public class CustSet : MonoBehaviour
     {
         CharName();
         classText.text = selectedClass[selectedIndex];
+        pointText.text = "Points: " + points.ToString();
     }
     #endregion
     #region SetTexture
@@ -182,59 +187,17 @@ public class CustSet : MonoBehaviour
     }
     #endregion
     #region Customizers
-    public void SkinPlus()
+    public void SetPlus(string name)
     {
-        SetTexture("Skin", 1);
+        SetTexture(name, 1);
     }
-    public void SkinMinus()
+    public void SetMinus(string name)
     {
-        SetTexture("Skin", -1);
-    }
-
-    public void EyesPlus()
-    {
-        SetTexture("Eyes", 1);
-    }
-    public void EyesMinus()
-    {
-        SetTexture("Eyes", -1);
+        SetTexture(name, -1);
     }
 
-    public void MouthPlus()
-    {
-        SetTexture("Mouth", 1);
-    }
-    public void MouthMinus()
-    {
-        SetTexture("Mouth", -1);
-    }
 
-    public void HairPlus()
-    {
-        SetTexture("Hair", 1);
-    }
-    public void HairMinus()
-    {
-        SetTexture("Hair", -1);
-    }
 
-    public void ArmourPlus()
-    {
-        SetTexture("Armour", 1);
-    }
-    public void ArmourMinus()
-    {
-        SetTexture("Armour", -1);
-    }
-
-    public void ClothesPlus()
-    {
-        SetTexture("Clothes", 1);
-    }
-    public void ClothesMinus()
-    {
-        SetTexture("Clothes", -1);
-    }
 
 
 
@@ -377,7 +340,43 @@ public class CustSet : MonoBehaviour
     }
     #endregion
     #region Points
-    
+    public void IncreasePoints(int arrayElement)
+    {
+        if (points > 0)
+        {
+            points--;
+            tempStats[arrayElement]++;
+            if (points <= 0)
+            {
+                positivePoints[arrayElement].interactable = false;
+
+            }
+            if (points < 10 && tempStats[arrayElement] > 0)
+            {
+                negativePoints[arrayElement].interactable = true;
+
+            }
+        }
+        
+    }
+    public void DecreasePoints(int arrayElement)
+    {
+        if (points < 10 && tempStats[arrayElement] > 0)
+        {
+            points++;
+            tempStats[arrayElement]--;
+
+            if (points >= 10)
+            {
+                negativePoints[arrayElement].interactable = false;
+            }
+            if (points > 0 && positivePoints[arrayElement].interactable == false)
+            {
+                positivePoints[arrayElement].interactable = true;
+
+            }
+        }
+    }
     #endregion
     #region Save and Play
     void Play()

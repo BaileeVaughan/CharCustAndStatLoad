@@ -8,25 +8,25 @@ public class CustSet : MonoBehaviour
 {
     #region Variables
     //Character Cust
-    [Header("Texture List")]
+    [Header("Texture List")] //texture lists
     public List<Texture2D> skin = new List<Texture2D>();
     public List<Texture2D> eyes = new List<Texture2D>();
     public List<Texture2D> mouth = new List<Texture2D>();
     public List<Texture2D> hair = new List<Texture2D>();
     public List<Texture2D> armour = new List<Texture2D>();
     public List<Texture2D> clothes = new List<Texture2D>();
-    [Header("Index")]
+    [Header("Index")] //indexes for each texture
     public int skinIndex;
     public int eyesIndex, mouthIndex, hairIndex, armourIndex, clothesIndex;
-    [Header("Renderer")]
+    [Header("Renderer")] //displaying the texture
     public Renderer character;
-    [Header("Max Index")]
+    [Header("Max Index")] // maximum index for each texture
     public int skinMax;
     public int eyesMax, mouthMax, hairMax, armourMax, clothesMax;
     //Stats
-    [Header("Character Name")]
+    [Header("Character Name")] //name of the character
     public string charName = "";
-    [Header("Stats")]
+    [Header("Stats")] //all stats of character
     //base player stats
     public string[] statArray = new string[7];
     public int[] stats = new int[7];
@@ -37,10 +37,10 @@ public class CustSet : MonoBehaviour
     public Text classText;
     public string[] selectedClass = new string[8];
     public string[] selectedRace = new string[11];
+    //point values
     public Text pointText;
     public Button[] positivePoints;
     public Button[] negativePoints;
-
     #endregion
     #region Start
     void Start()
@@ -48,11 +48,12 @@ public class CustSet : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        statArray = new string[] { "Power", "Dexterity", "Constitution", "Wisdom", "Intelligence", "Charisma", "Courage" };
-        selectedRace = new string[] { "Hylian", "Twili", "Rito", "Zora", "Goron", "Minish", "Deku", "Kokiri", "Korok", "Gerudo", "Sheikah" };
-        selectedClass = new string[] { "Fighter", "Opportunist", "Researcher", "Sage", "Commoner", "Scion", "Warrior", "Sharpshooter" };
+        statArray = new string[] { "Power", "Dexterity", "Constitution", "Wisdom", "Intelligence", "Charisma", "Courage" }; //stats
+        selectedRace = new string[] { "Hylian", "Twili", "Rito", "Zora", "Goron", "Minish", "Deku", "Kokiri", "Korok", "Gerudo", "Sheikah" }; //race
+        selectedClass = new string[] { "Fighter", "Opportunist", "Researcher", "Sage", "Commoner", "Scion", "Warrior", "Sharpshooter" }; //class
 
-        #region Pull Textures
+        #region Pull Textures 
+        //geting the textures from their folders
         for (int i = 0; i < skinMax; i++)
         {
             Texture2D temp = Resources.Load("Character/Skin_" + i) as Texture2D;
@@ -83,8 +84,9 @@ public class CustSet : MonoBehaviour
             Texture2D temp = Resources.Load("Character/Clothes_" + i) as Texture2D;
             clothes.Add(temp);
         }
-        #endregion
+        #endregion 
         character = GameObject.Find("Mesh").GetComponent<SkinnedMeshRenderer>();
+        //set all textures to the lowest index
         SetTexture("Skin", skinIndex = 0);
         SetTexture("Eyes", eyesIndex = 0);
         SetTexture("Mouth", mouthIndex = 0);
@@ -106,6 +108,7 @@ public class CustSet : MonoBehaviour
     {
         int index = 0, max = 0, matIndex = 0;
         Texture2D[] textures = new Texture2D[0];
+        //setting each texture to an index and switching between them
         #region Switch Materials
         switch (type)
         {
@@ -187,6 +190,7 @@ public class CustSet : MonoBehaviour
     }
     #endregion
     #region Customizers
+    //button functions
     public void SetPlus(string name)
     {
         SetTexture(name, 1);
@@ -195,14 +199,9 @@ public class CustSet : MonoBehaviour
     {
         SetTexture(name, -1);
     }
-
-
-
-
-
-
     #endregion
     #region CharName
+    //input for the character name
     void CharName()
     {
         charName = FindObjectOfType<InputField>().textComponent.text;
@@ -211,6 +210,7 @@ public class CustSet : MonoBehaviour
     #region Reset
     public void ResetCust()
     {
+        //reset function
         SetTexture("Skin", skinIndex = 0);
         SetTexture("Eyes", eyesIndex = 0);
         SetTexture("Mouth", mouthIndex = 0);
@@ -222,6 +222,7 @@ public class CustSet : MonoBehaviour
     #region Randomize
     public void Randomize()
     {
+        //randomize function
         SetTexture("Skin", Random.Range(0, skinMax - 1));
         SetTexture("Eyes", Random.Range(0, eyesMax - 1));
         SetTexture("Mouth", Random.Range(0, mouthMax - 1));
@@ -233,6 +234,7 @@ public class CustSet : MonoBehaviour
     #region Choose Class
     void ChooseClass(int className)
     {
+        //base stats for each class
         #region ClassStats
         switch (className)
         {
@@ -321,6 +323,7 @@ public class CustSet : MonoBehaviour
     }
     #endregion
     #region SelectClass
+    //button functions for classes
     public void PlusClass()
     {
         selectedIndex++;
@@ -340,6 +343,7 @@ public class CustSet : MonoBehaviour
     }
     #endregion
     #region Points
+    //button functions for each point type
     public void IncreasePoints(int arrayElement)
     {
         if (points > 0)
@@ -357,7 +361,7 @@ public class CustSet : MonoBehaviour
 
             }
         }
-        
+
     }
     public void DecreasePoints(int arrayElement)
     {
@@ -379,6 +383,7 @@ public class CustSet : MonoBehaviour
     }
     #endregion
     #region Save and Play
+    //load next scene and save
     void Play()
     {
         Save();
@@ -387,11 +392,12 @@ public class CustSet : MonoBehaviour
 
     void Save()
     {
-
+        
     }
     #endregion
 }
 #region CharClass
+//list of classes
 public enum CharacterClass
 {
     Fighter,
@@ -405,6 +411,7 @@ public enum CharacterClass
 }
 #endregion
 #region CharRace
+//list of races
 public enum CharacterRace
 {
     Hylian,

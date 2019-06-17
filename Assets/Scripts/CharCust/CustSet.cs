@@ -26,10 +26,12 @@ public class CustSet : MonoBehaviour
     //Stats
     [Header("Character Name")] //name of the character
     public string charName = "";
+    public Text nameText;
     [Header("Stats")] //all stats of character
     //base player stats
     public string[] statArray = new string[7];
     public int[] stats = new int[7];
+    public Text[] statText = new Text[7];
     public int[] tempStats = new int[7];
     public int points = 10;
     public int selectedIndex = 0;
@@ -47,6 +49,10 @@ public class CustSet : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        // statText = stats(statArray).ToString;
+
+        nameText.text = charName;
 
         statArray = new string[] { "Power", "Dexterity", "Constitution", "Wisdom", "Intelligence", "Charisma", "Courage" }; //stats
         selectedRace = new string[] { "Hylian", "Twili", "Rito", "Zora", "Goron", "Minish", "Deku", "Kokiri", "Korok", "Gerudo", "Sheikah" }; //race
@@ -93,6 +99,10 @@ public class CustSet : MonoBehaviour
         SetTexture("Hair", hairIndex = 0);
         SetTexture("Armour", armourIndex = 0);
         SetTexture("Clothes", clothesIndex = 0);
+        for (int i = 0; i < 7; i++)
+        {
+            statText[i].text = statArray[i] + ": " + (stats[i] + tempStats[i]);
+        }
     }
     #endregion
     #region Update
@@ -183,7 +193,7 @@ public class CustSet : MonoBehaviour
                 armourIndex = index;
                 break;
             case "Clothes":
-                skinIndex = index;
+                clothesIndex = index;
                 break;
         }
         #endregion
@@ -384,15 +394,30 @@ public class CustSet : MonoBehaviour
     #endregion
     #region Save and Play
     //load next scene and save
-    void Play()
+    public void Play()
     {
         Save();
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     void Save()
     {
-        
+        SaveSystem.SaveData(this);
+    }
+
+    public void LoadPlayer()
+    {
+        DataToSave data = SaveSystem.LoadPlayer();
+
+        skinIndex = data.skinIndex;
+        eyesIndex = data.eyesIndex;
+        mouthIndex = data.mouthIndex;
+        hairIndex = data.hairIndex;
+        armourIndex = data.armourIndex;
+        clothesIndex = data.clothesIndex;
+        charName = data.charName;
+        stats = data.stats;
+        selectedClass = data.selectedClass;
     }
     #endregion
 }

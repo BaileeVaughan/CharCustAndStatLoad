@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 720176281}
   - component: {fileID: 720176280}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Constitution
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 790066661}
   - component: {fileID: 790066660}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Courage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 1203781841}
   - component: {fileID: 1203781840}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -741,7 +741,7 @@ GameObject:
   - component: {fileID: 1480466517}
   - component: {fileID: 1480466516}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Wisdom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -820,7 +820,7 @@ GameObject:
   - component: {fileID: 1527743742}
   - component: {fileID: 1527743741}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Power
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -899,7 +899,7 @@ GameObject:
   - component: {fileID: 1579307634}
   - component: {fileID: 1579307633}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Class
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1002,6 +1002,7 @@ RectTransform:
   - {fileID: 1976862540}
   - {fileID: 1836001877}
   - {fileID: 790066659}
+  - {fileID: 2009490690}
   m_Father: {fileID: 523588220}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1104,7 +1105,7 @@ GameObject:
   - component: {fileID: 1836001879}
   - component: {fileID: 1836001878}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Charisma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1183,7 +1184,7 @@ GameObject:
   - component: {fileID: 1945050889}
   - component: {fileID: 1945050888}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Dexterity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1262,7 +1263,7 @@ GameObject:
   - component: {fileID: 1976862542}
   - component: {fileID: 1976862541}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Intelligence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1462,6 +1463,14 @@ PrefabInstance:
       propertyPath: eyesMax
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 622606835, guid: f19ed70269087df439e0ae84390b60a8, type: 3}
+      propertyPath: pointText
+      value: 
+      objectReference: {fileID: 2009490691}
+    - target: {fileID: 622606835, guid: f19ed70269087df439e0ae84390b60a8, type: 3}
+      propertyPath: charNameText
+      value: 
+      objectReference: {fileID: 1203781840}
     - target: {fileID: 3099549257468864214, guid: f19ed70269087df439e0ae84390b60a8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1531,3 +1540,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53393431a84c264ba68f36fa1821441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2009490689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2009490690}
+  - component: {fileID: 2009490692}
+  - component: {fileID: 2009490691}
+  m_Layer: 5
+  m_Name: Points
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2009490690
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009490689}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.206241, y: 0.206241, z: 0.206241}
+  m_Children: []
+  m_Father: {fileID: 1770348704}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -233.8, y: -259}
+  m_SizeDelta: {x: 1417, y: 161.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2009490691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009490689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 140
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 140
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &2009490692
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009490689}
+  m_CullTransparentMesh: 0

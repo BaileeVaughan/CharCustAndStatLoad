@@ -26,7 +26,7 @@ public class CustSet : MonoBehaviour
     //Stats
     [Header("Character Name")] //name of the character
     public string charName = "";
-    public Text nameText;
+    public Text charNameText;
     [Header("Stats")] //all stats of character
     //base player stats
     public string[] statArray = new string[7];
@@ -51,8 +51,6 @@ public class CustSet : MonoBehaviour
         Cursor.visible = true;
 
         // statText = stats(statArray).ToString;
-
-        nameText.text = charName;
 
         statArray = new string[] { "Power", "Dexterity", "Constitution", "Wisdom", "Intelligence", "Charisma", "Courage" }; //stats
         selectedRace = new string[] { "Hylian", "Twili", "Rito", "Zora", "Goron", "Minish", "Deku", "Kokiri", "Korok", "Gerudo", "Sheikah" }; //race
@@ -99,18 +97,19 @@ public class CustSet : MonoBehaviour
         SetTexture("Hair", hairIndex = 0);
         SetTexture("Armour", armourIndex = 0);
         SetTexture("Clothes", clothesIndex = 0);
-        for (int i = 0; i < 7; i++)
-        {
-            statText[i].text = statArray[i] + ": " + (stats[i] + tempStats[i]);
-        }
     }
     #endregion
     #region Update
     private void Update()
     {
-        CharName();
+        charName = FindObjectOfType<InputField>().textComponent.text;
         classText.text = selectedClass[selectedIndex];
         pointText.text = "Points: " + points.ToString();
+        charNameText.text = charName;
+        for (int i = 0; i < 7; i++)
+        {
+            statText[i].text = statArray[i] + ": " + (stats[i] + tempStats[i]);
+        }
     }
     #endregion
     #region SetTexture
@@ -208,13 +207,6 @@ public class CustSet : MonoBehaviour
     public void SetMinus(string name)
     {
         SetTexture(name, -1);
-    }
-    #endregion
-    #region CharName
-    //input for the character name
-    void CharName()
-    {
-        charName = FindObjectOfType<InputField>().textComponent.text;
     }
     #endregion
     #region Reset

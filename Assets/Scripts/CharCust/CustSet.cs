@@ -26,7 +26,7 @@ public class CustSet : MonoBehaviour
     //Stats
     [Header("Character Name")] //name of the character
     public string charName = "";
-    public Text charNameText;
+    public InputField nameField;
     [Header("Stats")] //all stats of character
     //base player stats
     public string[] statArray = new string[7];
@@ -34,11 +34,13 @@ public class CustSet : MonoBehaviour
     public Text[] statText = new Text[7];
     public int[] tempStats = new int[7];
     public int points = 10;
-    public int selectedIndex = 0;
+    public int selectedClassIndex = 0;
     public CharacterClass charClass = CharacterClass.Fighter;
     public Text classText;
     public string[] selectedClass = new string[8];
     public string[] selectedRace = new string[11];
+    public int selectedRaceIndex = 0;
+    public Text raceText;
     //point values
     public Text pointText;
     public Button[] positivePoints;
@@ -97,15 +99,16 @@ public class CustSet : MonoBehaviour
         SetTexture("Hair", hairIndex = 0);
         SetTexture("Armour", armourIndex = 0);
         SetTexture("Clothes", clothesIndex = 0);
+        ChooseClass(selectedClassIndex);        
     }
     #endregion
     #region Update
     private void Update()
     {
-        charName = FindObjectOfType<InputField>().textComponent.text;
-        classText.text = selectedClass[selectedIndex];
+        charName = nameField.textComponent.text;
+        classText.text = selectedClass[selectedClassIndex];
+        raceText.text = selectedRace[selectedRaceIndex];
         pointText.text = "Points: " + points.ToString();
-        charNameText.text = charName;
         for (int i = 0; i < 7; i++)
         {
             statText[i].text = statArray[i] + ": " + (stats[i] + tempStats[i]);
@@ -328,20 +331,41 @@ public class CustSet : MonoBehaviour
     //button functions for classes
     public void PlusClass()
     {
-        selectedIndex++;
-        if (selectedIndex > selectedClass.Length - 1)
+        selectedClassIndex++;
+        if (selectedClassIndex > selectedClass.Length - 1)
         {
-            selectedIndex = 0;
+            selectedClassIndex = 0;
         }
+        ChooseClass(selectedClassIndex);
     }
     public void MinusClass()
     {
-        selectedIndex--;
-        if (selectedIndex < 0)
+        selectedClassIndex--;
+        if (selectedClassIndex < 0)
         {
-            selectedIndex = selectedClass.Length - 1;
+            selectedClassIndex = selectedClass.Length - 1;
         }
-        ChooseClass(selectedIndex);
+        ChooseClass(selectedClassIndex);
+    }
+    #endregion
+    #region ChooseRace
+    public void PlusRace()
+    {
+        selectedRaceIndex++;
+        if (selectedRaceIndex > selectedRace.Length - 1)
+        {
+            selectedRaceIndex = 0;
+        }
+        ChooseClass(selectedRaceIndex);
+    }
+    public void MinusRace()
+    {
+        selectedRaceIndex--;
+        if (selectedRaceIndex < 0)
+        {
+            selectedRaceIndex = selectedRace.Length - 1;
+        }
+        ChooseClass(selectedRaceIndex);
     }
     #endregion
     #region Points
@@ -395,21 +419,6 @@ public class CustSet : MonoBehaviour
     void Save()
     {
         SaveSystem.SaveData(this);
-    }
-
-    public void LoadPlayer()
-    {
-        DataToSave data = SaveSystem.LoadPlayer();
-
-        skinIndex = data.skinIndex;
-        eyesIndex = data.eyesIndex;
-        mouthIndex = data.mouthIndex;
-        hairIndex = data.hairIndex;
-        armourIndex = data.armourIndex;
-        clothesIndex = data.clothesIndex;
-        charName = data.charName;
-        stats = data.stats;
-        selectedClass = data.selectedClass;
     }
     #endregion
 }

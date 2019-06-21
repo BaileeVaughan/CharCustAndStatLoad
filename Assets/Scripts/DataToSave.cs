@@ -10,8 +10,9 @@ public class DataToSave
     public int eyesIndex, mouthIndex, hairIndex, armourIndex, clothesIndex;
     //stats
     public string charName;
-    public int[] stats;
-    public string[] selectedClass;
+    public int[] stats = new int[7];
+    public string selectedClass;
+    public string selectedRace;
 
     public DataToSave(CustSet cust)
     {
@@ -22,7 +23,11 @@ public class DataToSave
         armourIndex = cust.armourIndex;
         clothesIndex = cust.clothesIndex;
         charName = cust.charName;
-        stats = cust.stats;
-        selectedClass = cust.selectedClass;
+        for (int i = 0; i < 7; i++)
+        {
+            stats[i] = (cust.stats[i] + cust.tempStats[i]);
+        }
+        selectedClass = cust.selectedClass[cust.selectedClassIndex];
+        selectedRace = cust.selectedRace[cust.selectedRaceIndex];
     }
 }

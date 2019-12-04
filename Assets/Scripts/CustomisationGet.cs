@@ -21,6 +21,7 @@ public class CustomisationGet : MonoBehaviour {
     public Text classText;
     public Text raceText;
 
+    public int skin, eyes, mouth, hair, clothes, armour;
     #region Start
     private void Start()
     {
@@ -46,11 +47,17 @@ public class CustomisationGet : MonoBehaviour {
     {
         DataToSave data = SaveSystem.LoadPlayer();
         SetTexture("Skin", data.skinIndex);
+        skin = data.skinIndex;
         SetTexture("Eyes", data.eyesIndex);
+        eyes = data.eyesIndex;
         SetTexture("Mouth", data.mouthIndex);
+        mouth = data.mouthIndex;
         SetTexture("Hair", data.hairIndex);
+        hair = data.hairIndex;
         SetTexture("Armour", data.armourIndex);
+        armour = data.armourIndex;
         SetTexture("Clothes", data.clothesIndex);
+        clothes = data.clothesIndex;
         playerName = data.charName;  
         stats = data.stats;
         playerClass = data.selectedClass;
@@ -59,7 +66,7 @@ public class CustomisationGet : MonoBehaviour {
     #endregion
     #region SetTexture
     //Create a function that is called SetTexture it should contain a string and int
-    void SetTexture(string type, int dir)  //the string is the name of the material we are editing, the int is the direction we are changing
+    public void SetTexture(string type, int dir)  //the string is the name of the material we are editing, the int is the direction we are changing
     {
         //we need variables that exist only within this function
         //these are int material index and Texture2D array of textures
